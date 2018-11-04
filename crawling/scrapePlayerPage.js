@@ -4,6 +4,7 @@ const jsonframe = require('jsonframe-cheerio');
 const frameForProfile = {
   name: 'li#pc_v_name',
   kana: 'li#pc_v_kana',
+  team: 'li#pc_v_team',
   position: '#pc_bio tbody > tr:nth-child(1) td',
   handedness: '#pc_bio tbody > tr:nth-child(2) td',
   heightAndWeight: '#pc_bio tbody > tr:nth-child(3) td',
@@ -57,7 +58,8 @@ const frameForPitchingStats = {
       noWalk: 'td:nth-child(11)',
       winningPercentage: 'td:nth-child(12)',
       battersFaced: 'td:nth-child(13)',
-      inningsPitched: 'td:nth-child(14)',
+      inningsPitchedInteger: 'td:nth-child(14) th',
+      inningsPitchedFractional: 'td:nth-child(14) td',
       hits: 'td:nth-child(15)',
       homeRuns: 'td:nth-child(16)',
       basesOnBalls: 'td:nth-child(17)',
