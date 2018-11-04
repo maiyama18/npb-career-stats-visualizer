@@ -1,6 +1,16 @@
 const cheerio = require('cheerio');
 const jsonframe = require('jsonframe-cheerio');
 
+const frameForProfile = {
+  name: 'li#pc_v_name',
+  kana: 'li#pc_v_kana',
+  position: '#pc_bio tbody > tr:nth-child(1) td',
+  handedness: '#pc_bio tbody > tr:nth-child(2) td',
+  heightAndWeight: '#pc_bio tbody > tr:nth-child(3) td',
+  birthDay: '#pc_bio tbody > tr:nth-child(4) td',
+  draftInfo: '#pc_bio tbody > tr:nth-child(6) td',
+};
+
 const frameForBattingStats = {
   years: {
     _s: '#tablefix_b tr.registerStats',
@@ -62,15 +72,22 @@ const frameForPitchingStats = {
   },
 };
 
-const scrapeStats = (html) => {
+const scrapePlayerPage = (html) => {
   const $ = cheerio.load(html);
   jsonframe($);
 
-  const pitchingStats = $('body').scrape(frameForPitchingStats);
+  const profile = $('body').scrape(frameForProfile);
   const battingStats = $('body').scrape(frameForBattingStats);
+  let pitchingStats = null;
+  if (profile.position === '投手') {
+    pitchingStats = $('body').scrape(frameForPitchingStats);
+  }
 
-  console.log(pitchingStats);
-  console.log(battingStats);
+  return {
+    profile,
+    battingStats,
+    pitchingStats,
+  };
 };
 
-module.exports = scrapeStats;
+module.exports = scrapePlayerPage;
