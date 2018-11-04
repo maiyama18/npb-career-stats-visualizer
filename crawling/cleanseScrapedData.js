@@ -1,5 +1,5 @@
 const cleanseScrapedData = (rawData) => {
-  const profile = cleanseProfile(rawData.profile);
+  const profile = cleanseProfile(rawData.profile, rawData.battingStats);
   
   return {
     profile,
