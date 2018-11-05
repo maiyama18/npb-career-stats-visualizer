@@ -29,6 +29,10 @@ const crawlPlayersDataForOneInitial = async (url) => {
       const url = `${baseUrl}${player.url}`;
       const playerData = await getPlayerData(url);
       playersData.push(playerData);
+<<<<<<< HEAD:crawling/crawlPlayersDataForOneInitial.js
+=======
+      // console.log(playerData);
+>>>>>>> 7c6938d1b0effbc72e005f29c0bab8d750363483:crawling/crawlPlayersDataForOneInitial.js
     } catch (err) {
       console.error(err);
     }
@@ -38,4 +42,8 @@ const crawlPlayersDataForOneInitial = async (url) => {
   return playersData;
 };
 
+<<<<<<< HEAD:crawling/crawlPlayersDataForOneInitial.js
 module.exports = crawlPlayersDataForOneInitial;
+=======
+module.exports = getPlayersDataForOneInitial;
+>>>>>>> 7c6938d1b0effbc72e005f29c0bab8d750363483:crawling/crawlPlayersDataForOneInitial.js

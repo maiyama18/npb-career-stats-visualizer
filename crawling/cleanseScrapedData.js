@@ -35,7 +35,12 @@ const extract = (str, regExp) => {
 const cleanseProfile = (rawProfile, rawBattingStats, rawPitchingStats) => {
   const name = rawProfile.name.replace(/ /g, '');
   const kana = rawProfile.kana.replace(/・/g, '');
+  console.log('raw team', rawProfile.team);
   const team = teamNameToId[rawProfile.team];
+<<<<<<< HEAD
+=======
+  console.log('team', team);
+>>>>>>> 7c6938d1b0effbc72e005f29c0bab8d750363483
   const position = (rawPitchingStats !== null) ? 'P' : 'B';
   const pitchHand = (rawProfile.handedness[0] === '右') ? 'R' : 'L';
   const batHand = (rawProfile.handedness[2] === '右') ? 'R' : 'L';
