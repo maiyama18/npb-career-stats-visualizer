@@ -2,7 +2,7 @@ const cleanseScrapedData = (rawData) => {
   const profile = cleanseProfile(rawData.profile, rawData.battingStats, rawData.pitchingStats);
   
   return {
-    profile,
+    ...profile,
     battingStats: cleanseBattingStats(rawData.battingStats, profile),
     pitchingStats: rawData.pitchingStats ? cleansePitchingStats(rawData.pitchingStats, profile) : null,
   };

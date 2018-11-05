@@ -16,7 +16,7 @@ const frameForPlayerPageUrls = {
   },
 };
 
-const getPlayersDataForOneInitial = async (url) => {
+const crawlPlayersDataForOneInitial = async (url) => {
   const response = await got(url);
   const $ = cheerio.load(response.body);
   jsonframe($);
@@ -29,14 +29,13 @@ const getPlayersDataForOneInitial = async (url) => {
       const url = `${baseUrl}${player.url}`;
       const playerData = await getPlayerData(url);
       playersData.push(playerData);
-      console.log(playerData);
     } catch (err) {
       console.error(err);
     }
-    await delay(1000);
+    await delay(500);
   }
 
   return playersData;
 };
 
-module.exports = getPlayersDataForOneInitial;
+module.exports = crawlPlayersDataForOneInitial;
