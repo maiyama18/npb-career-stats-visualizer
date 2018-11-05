@@ -5,11 +5,10 @@ const frameForProfile = {
   name: 'li#pc_v_name',
   kana: 'li#pc_v_kana',
   team: 'li#pc_v_team',
-  position: '#pc_bio tbody > tr:nth-child(1) td',
-  handedness: '#pc_bio tbody > tr:nth-child(2) td',
-  heightAndWeight: '#pc_bio tbody > tr:nth-child(3) td',
-  birthDay: '#pc_bio tbody > tr:nth-child(4) td',
-  draftInfo: '#pc_bio tbody > tr:nth-child(6) td',
+  handedness: '#pc_bio tbody > tr:nth-last-child(5) td',
+  heightAndWeight: '#pc_bio tbody > tr:nth-last-child(4) td',
+  birthDay: '#pc_bio tbody > tr:nth-last-child(3) td',
+  draftInfo: '#pc_bio tbody > tr:nth-last-child(1) td',
 };
 
 const frameForBattingStats = {
@@ -79,16 +78,13 @@ const scrapePlayerPage = (html) => {
   jsonframe($);
 
   const profile = $('body').scrape(frameForProfile);
-  const battingStats = $('body').scrape(frameForBattingStats);
-  let pitchingStats = null;
-  if (profile.position === '投手') {
-    pitchingStats = $('body').scrape(frameForPitchingStats);
-  }
+  const battingResult = $('body').scrape(frameForBattingStats);
+  const pitchingResult = $('body').scrape(frameForPitchingStats);
 
   return {
     profile,
-    battingStats,
-    pitchingStats,
+    battingStats: battingResult.years,
+    pitchingStats: pitchingResult.years.length !== 0 ? pitchingResult.years : null,
   };
 };
 
