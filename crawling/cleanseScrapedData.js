@@ -1,5 +1,5 @@
 const cleanseScrapedData = (rawData) => {
-  const profile = cleanseProfile(rawData.profile, rawData.battingStats);
+  const profile = cleanseProfile(rawData.profile, rawData.battingStats, rawData.pitchingStats);
   
   return {
     profile,
@@ -32,17 +32,19 @@ const extract = (str, regExp) => {
   return str.match(regExp)[1];
 };
 
-const cleanseProfile = (rawProfile, rawBattingStats) => {
+const cleanseProfile = (rawProfile, rawBattingStats, rawPitchingStats) => {
   const name = rawProfile.name.replace(/ /g, '');
   const kana = rawProfile.kana.replace(/・/g, '');
+  console.log('raw team', rawProfile.team);
   const team = teamNameToId[rawProfile.team];
-  const position = (rawProfile.position === '投手') ? 'P' : 'B';
+  console.log('team', team);
+  const position = (rawPitchingStats !== null) ? 'P' : 'B';
   const pitchHand = (rawProfile.handedness[0] === '右') ? 'R' : 'L';
   const batHand = (rawProfile.handedness[2] === '右') ? 'R' : 'L';
   const height = parseInt(extract(rawProfile.heightAndWeight, /(\d+)cm/));
   const weight = parseInt(extract(rawProfile.heightAndWeight, /(\d+)kg/));
   const birthDay = parseDate(rawProfile.birthDay);
-  const firstYear = rawProfile.draftInfo ? parseInt(extract(rawProfile.draftInfo, /(\d+)年/)) : rawBattingStats.years[0].year;
+  const firstYear = rawProfile.draftInfo ? parseInt(extract(rawProfile.draftInfo, /(\d+)年/)) : rawBattingStats[0].year;
 
   return {
     name,
@@ -58,8 +60,8 @@ const cleanseProfile = (rawProfile, rawBattingStats) => {
   };
 };
 
-const convertAllToNumber = years => {
-  return years.map(year => {
+const convertAllToNumber = battingStats => {
+  return battingStats.map(year => {
     const convertedYear = {};
     Object.entries(year).forEach(([key, value]) => {
       convertedYear[key] = Number(value);
@@ -69,8 +71,8 @@ const convertAllToNumber = years => {
   });
 };
 
-const calculateAdditionalBattingStats = (years, profile) => {
-  return years.map(year => {
+const calculateAdditionalBattingStats = (battingStats, profile) => {
+  return battingStats.map(year => {
     year.age = year.year - profile.birthDay.getFullYear();
     year.yearth = year.year - profile.firstYear + 1;
     year.onBasePlusSluggingPercentage = year.onBasePercentage + year.sluggingPercentage;
@@ -79,10 +81,10 @@ const calculateAdditionalBattingStats = (years, profile) => {
 };
 
 const cleanseBattingStats = (rawBattingStats, profile) => {
-  let years = convertAllToNumber(rawBattingStats.years);
-  years = calculateAdditionalBattingStats(years, profile);
+  let battingStats = convertAllToNumber(rawBattingStats);
+  battingStats = calculateAdditionalBattingStats(battingStats, profile);
 
-  return years;
+  return battingStats;
 };
 
 const convertPitchingInning = (integer, fractional) => {
@@ -91,8 +93,8 @@ const convertPitchingInning = (integer, fractional) => {
   return integer + fractional * 3.3333;
 };
 
-const calculateAdditionalPitchingStats = (years, profile) => {
-  return years.map(year => ({
+const calculateAdditionalPitchingStats = (pitchingStats, profile) => {
+  return pitchingStats.map(year => ({
     ...year,
     age: year.year - profile.birthDay.getFullYear(),
     yearth: year.year - profile.firstYear + 1,
@@ -101,11 +103,11 @@ const calculateAdditionalPitchingStats = (years, profile) => {
   }));
 };
 
-const cleansePitchingStats = (rawBattingStats, profile) => {
-  let years = convertAllToNumber(rawBattingStats.years);
-  years = calculateAdditionalPitchingStats(years, profile);
+const cleansePitchingStats = (rawPitchingStats, profile) => {
+  let pitchingStats = convertAllToNumber(rawPitchingStats);
+  pitchingStats = calculateAdditionalPitchingStats(pitchingStats, profile);
 
-  return years;
+  return pitchingStats;
 };
 
 module.exports = cleanseScrapedData;
