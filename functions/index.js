@@ -8,10 +8,6 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 db.settings({ timestampsInSnapshots: true });
 
-(async () => {
-  await crawl(db);
-})();
-
 exports.crawl = functions.https.onRequest(async (_request, response) => {
   try {
     await crawl(db);
@@ -20,4 +16,3 @@ exports.crawl = functions.https.onRequest(async (_request, response) => {
     response.send(err);
   }
 });
-
