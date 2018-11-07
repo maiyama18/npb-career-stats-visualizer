@@ -24,15 +24,15 @@ const crawlPlayersDataForOneInitial = async (url) => {
   const playersData = [];
   const { players } = $('body').scrape(frameForPlayerPageUrls);
   for (let player of players) {
-    console.log(`scraping ${player.name}...`);
     try {
       const url = `${baseUrl}${player.url}`;
+      console.log(`scraping ${player.name}`, url);
       const playerData = await getPlayerData(url);
       playersData.push(playerData);
     } catch (err) {
       console.error(err);
     }
-    await delay(500);
+    await delay(100);
   }
 
   return playersData;

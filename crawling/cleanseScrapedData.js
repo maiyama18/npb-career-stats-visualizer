@@ -1,5 +1,8 @@
-const cleanseScrapedData = (rawData) => {
-  const profile = cleanseProfile(rawData.profile, rawData.battingStats, rawData.pitchingStats);
+const cleanseScrapedData = (rawData, url) => {
+  const profile = {
+    ...cleanseProfile(rawData.profile, rawData.battingStats, rawData.pitchingStats),
+    id: url.match(/\/(\d+).html/)[1],
+  };
   
   return {
     profile,
@@ -18,7 +21,7 @@ const teamNameToId = {
   '福岡ソフトバンクホークス': 'H',
   '埼玉西武ライオンズ': 'L',
   '東北楽天ゴールデンイーグルス': 'E',
-  'オリックス・バファローズ': 'BS',
+  'オリックスバファローズ': 'BS',
   '北海道日本ハムファイターズ': 'F',
   '千葉ロッテマリーンズ': 'M',
 };
@@ -35,7 +38,7 @@ const extract = (str, regExp) => {
 const cleanseProfile = (rawProfile, rawBattingStats, rawPitchingStats) => {
   const name = rawProfile.name.replace(/ /g, '');
   const kana = rawProfile.kana.replace(/・/g, '');
-  const team = teamNameToId[rawProfile.team];
+  const team = teamNameToId[rawProfile.team] || 'UNDEFINED';
   const position = (rawPitchingStats !== null) ? 'P' : 'B';
   const pitchHand = (rawProfile.handedness[0] === '右') ? 'R' : 'L';
   const batHand = (rawProfile.handedness[2] === '右') ? 'R' : 'L';
