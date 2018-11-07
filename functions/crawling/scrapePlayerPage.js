@@ -81,6 +81,10 @@ const scrapePlayerPage = (html) => {
   const battingResult = $('body').scrape(frameForBattingStats);
   const pitchingResult = $('body').scrape(frameForPitchingStats);
 
+  if (!profile.team) {
+    profile.team = null;
+  }
+
   return {
     profile,
     battingStats: battingResult.years,

@@ -2,8 +2,6 @@ const cheerio = require('cheerio');
 const jsonframe = require('jsonframe-cheerio');
 const got = require('got');
 
-const baseUrl = 'http://npb.jp/bis/players/all/';
-
 const frameForInitialIndexUrls = {
   urls: {
     _s: '#pl_lk_unit li',
@@ -21,6 +19,7 @@ const getInitialIndexUrls = async (url) => {
   const result = $('body').scrape(frameForInitialIndexUrls);
   const urls = result.urls.filter(url => url.url).map(url => url.url);
 
+  const baseUrl = url.replace('index.html', '');
   return urls.map(url => `${baseUrl}${url}`);
 };
 
