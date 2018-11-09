@@ -1,13 +1,26 @@
-const crawlPlayersDataForOneInitial = require('./crawlPlayersDataForOneInitial');
-const getInitialIndexUrls = require('./getInitialIndexUrls');
-const uploadPlayersData = require('./uploadPlayersData');
-
+const got = require('got');
+const delay = require('delay');
+const scrapeTopPage = require('./scrapeTopPage');
+const scrapeIndexPage = require('./scrapeIndexPage');
+const scrapePlayerPage = require('./scrapePlayerPage');
+const cleansePlayersData = require('./cleansePlayerData');
+const uploadPlayerData = require('./uploadPlayerData');
 
 const crawl = async (db, topUrl) => {
-  const initialIndexUrls = await getInitialIndexUrls(topUrl);
-  for (let url of initialIndexUrls) {
-    const playersData = await crawlPlayersDataForOneInitial(url);
-    await uploadPlayersData(db, playersData);
+  const topResponse = await got(topUrl);
+  const indexUrls = scrapeTopPage(topResponse.body, topUrl);
+
+  for (let indexUrl of indexUrls) {
+    const indexResponse = await got(indexUrl);
+    const playerUrls = scrapeIndexPage(indexResponse.body);
+
+    for (let playerUrl of playerUrls) {
+      const playerResponse = await got(playerUrl);
+      const playerData = scrapePlayerPage(playerResponse.body);
+      const cleansedPlayerData = cleansePlayersData(playerData, playerUrl);
+      await uploadPlayerData(db, cleansedPlayerData);
+      await delay(500);
+    }
   }
 };
 

@@ -28,7 +28,10 @@ const teamNameToId = {
 
 const parseDate = (dateStr) => {
   const dateArr = dateStr.match(/(\d+)/g).map(s => parseInt(s));
-  return new Date(dateArr[0], dateArr[1] - 1, dateArr[2] - 1);
+  const year = dateArr[0] || 1990;
+  const monthIndex = dateArr[1] ? dateArr[1] - 1 : 4;
+  const dayIndex = dateArr[2] ? dateArr[2] - 1 : 1;
+  return new Date(year, monthIndex, dayIndex);
 };
 
 const extract = (str, regExp) => {
