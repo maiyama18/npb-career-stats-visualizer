@@ -1,6 +1,13 @@
+const firebase = require('firebase');
+require('firebase/firestore');
+const firebaseConfig = require('../../firebaseConfig');
 const deepEqual = require('deep-equal');
 
-const uploadPlayerData = async (db, playerData) => {
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+db.settings({ timestampsInSnapshots: true });
+
+const uploadStatsToFirestore = async (playerData) => {
   try {
     const { id } = playerData.profile;
 
@@ -8,7 +15,7 @@ const uploadPlayerData = async (db, playerData) => {
       profile: playerData.profile,
       battingStats: playerData.battingStats,
     };
-    if (await recordUpToDate(battingRecord, db, 'batting')) {
+    if (await recordUpToDate(battingRecord, 'batting')) {
       console.log('Batting data is already up to date'); 
     } else {
       await db.collection('batting').doc(id).set(battingRecord);
@@ -19,7 +26,7 @@ const uploadPlayerData = async (db, playerData) => {
       profile: playerData.profile,
       pitchingStats: playerData.pitchingStats,
     };
-    if (await recordUpToDate(pitchingRecord, db, 'pitching')) {
+    if (await recordUpToDate(pitchingRecord, 'pitching')) {
       console.log('Pitching data is already up to date'); 
     } else {
       await db.collection('pitching').doc(id).set(pitchingRecord);
@@ -30,7 +37,7 @@ const uploadPlayerData = async (db, playerData) => {
   }
 };
 
-const recordUpToDate = async (record, db, collectionName) => {
+const recordUpToDate = async (record, collectionName) => {
   const { id } = record.profile;
 
   const existingRecordRef = await db.collection(collectionName).doc(id).get();
@@ -47,4 +54,4 @@ const recordUpToDate = async (record, db, collectionName) => {
   return deepEqual(record, existingRecord); 
 };
 
-module.exports = uploadPlayerData;
+module.exports = uploadStatsToFirestore;

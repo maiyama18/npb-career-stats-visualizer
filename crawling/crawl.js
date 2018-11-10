@@ -4,9 +4,10 @@ const scrapeTopPage = require('./scrape/scrapeTopPage');
 const scrapeIndexPage = require('./scrape/scrapeIndexPage');
 const scrapePlayerPage = require('./scrape/scrapePlayerPage');
 const cleansePlayersData = require('./cleanse/cleansePlayerData');
-const uploadPlayerData = require('./upload/uploadPlayerData');
+const uploadStatsToFirestore = require('./upload/uploadStatsToFirestore');
+const uploadProfileToAlgolia = require('./upload/uploadProfileToAlgolia');
 
-const crawl = async (db, topUrl) => {
+const crawl = async (topUrl) => {
   const topResponse = await got(topUrl);
   const indexUrls = scrapeTopPage(topResponse.body, topUrl);
 
@@ -29,7 +30,8 @@ const crawl = async (db, topUrl) => {
         }
 
         const cleansedPlayerData = cleansePlayersData(playerData, playerUrl);
-        await uploadPlayerData(db, cleansedPlayerData);
+        await uploadProfileToAlgolia(cleansedPlayerData);
+        await uploadStatsToFirestore(cleansedPlayerData);
         await delay(500);
       } catch (err) {
         console.error(`skip ${playerUrl} because unknown error occurs`);

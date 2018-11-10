@@ -5,6 +5,7 @@
   "author": "ymr-39",
   "license": "MIT",
   "dependencies": {
+    "algoliasearch": "^3.30.0",
     "cheerio": "^1.0.0-rc.2",
     "deep-equal": "^1.0.1",
     "delay": "^4.1.0",
