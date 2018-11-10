@@ -21,11 +21,11 @@ const crawl = async (topUrl) => {
         const playerResponse = await got(playerUrl);
         const playerData = scrapePlayerPage(playerResponse.body);
         if (noStats(playerData)) {
-          console.error(`skip ${playerUrl} because there is no stats.`);
+          console.log(`skip ${playerUrl} because there is no stats.`);
           continue;
         }
         if (tooOld(playerData)) {
-          console.error(`skip ${playerUrl} because the record is too old.`);
+          console.log(`skip ${playerUrl} because the record is too old.`);
           continue;
         }
 
@@ -34,7 +34,7 @@ const crawl = async (topUrl) => {
         await uploadStatsToFirestore(cleansedPlayerData);
         await delay(500);
       } catch (err) {
-        console.error(`skip ${playerUrl} because unknown error occurs`);
+        console.log(`skip ${playerUrl} because unknown error occurs`);
       }
     }
   }

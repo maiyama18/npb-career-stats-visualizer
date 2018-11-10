@@ -32,8 +32,8 @@ const uploadStatsToFirestore = async (playerData) => {
       await db.collection('pitching').doc(id).set(pitchingRecord);
     }
   } catch (err) {
-    console.log('upload failed!');
-    console.log(err);
+    console.error('upload failed!');
+    console.error(err);
   }
 };
 

@@ -16,7 +16,7 @@ const uploadProfileToAlgolia = async (playerData) => {
       await addObject(profile, pitchingIndex);
     }
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
