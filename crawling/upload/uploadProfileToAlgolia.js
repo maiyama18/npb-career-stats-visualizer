@@ -1,5 +1,5 @@
 const algoliasearch = require('algoliasearch');
-const algoliaConfig = require('../../algoliaConfig');
+const algoliaConfig = require('../../config/algoliaConfig');
 
 const client = algoliasearch(algoliaConfig.appId, algoliaConfig.adminAPIKey);
 
