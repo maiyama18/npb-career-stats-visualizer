@@ -1,6 +1,6 @@
 const firebase = require('firebase');
 require('firebase/firestore');
-const firebaseConfig = require('../../firebaseConfig');
+const firebaseConfig = require('../../config/firebaseConfig');
 const deepEqual = require('deep-equal');
 
 firebase.initializeApp(firebaseConfig);
