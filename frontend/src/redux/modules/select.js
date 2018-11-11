@@ -16,6 +16,7 @@ const FINISH_SEARCH_FAILURE = 'FINISH_SEARCH_FAILURE';
 const START_SELECT = 'START_SELECT';
 const FINISH_SELECT_SUCCESS = 'FINISH_SELECT_SUCCESS';
 const FINISH_SELECT_FAILURE = 'FINISH_SELECT_FAILURE';
+const REMOVE_SELECTED_PLAYER = 'REMOVE_SELECTED_PLAYER';
 
 const startSearch = (query) => ({
   type: START_SEARCH,
@@ -47,6 +48,12 @@ const finishSelectSuccess = (playerData) => ({
 });
 const finishSelectFailure = () => ({
   type: FINISH_SELECT_FAILURE,
+});
+export const removeSelectedPlayer = (id) => ({
+  type: REMOVE_SELECTED_PLAYER,
+  payload: {
+    id,
+  },
 });
 
 export const selectReducer = (state = selectInitialState, action) => {
@@ -86,6 +93,11 @@ export const selectReducer = (state = selectInitialState, action) => {
     return {
       ...state,
       selecting: false,
+    };
+  case REMOVE_SELECTED_PLAYER:
+    return {
+      ...state,
+      selected: state.selected.filter(player => player.profile.id !== action.payload.id),
     };
   default:
     return state;
