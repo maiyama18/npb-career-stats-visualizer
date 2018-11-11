@@ -1,7 +1,9 @@
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import rootReducer, { initialState } from './reducers';
 
-const enhancers = [];
+const middleWares = [thunk];
+const enhancers = [applyMiddleware(...middleWares)];
 
 const reduxDevtoolsExtension = window.devToolsExtension;
 if (process.env.NODE_ENV === 'development' && typeof reduxDevtoolsExtension === 'function') {

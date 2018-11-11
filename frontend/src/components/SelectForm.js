@@ -2,9 +2,9 @@ import React from 'react';
 import { Form } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { changeQuery } from '../redux/modules/select';
+import { changeQueryThunk } from '../redux/modules/select';
 
-const SelectForm = ({ query, changeQuery }) => (
+const SelectForm = ({ query, changeQueryThunk }) => (
   <div>
     <Form>
       <Form.Field>
@@ -12,7 +12,7 @@ const SelectForm = ({ query, changeQuery }) => (
           type="text" 
           placeholder='選手名で検索'
           value={query}
-          onChange={e => changeQuery(e.target.value)}
+          onChange={e => changeQueryThunk(e.target.value)}
         />
       </Form.Field>
     </Form>
@@ -25,7 +25,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   ...bindActionCreators({
-    changeQuery,
+    changeQueryThunk,
   }, dispatch),
 });
 

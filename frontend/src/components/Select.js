@@ -5,7 +5,7 @@ import SelectedList from './SelectedList';
 
 const Select = () => {
   return (
-    <div style={{background: 'green'}}>
+    <div>
       <SelectForm />
       <SelectCandidates />
       <SelectedList />
