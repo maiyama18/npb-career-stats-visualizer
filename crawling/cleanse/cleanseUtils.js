@@ -9,14 +9,18 @@ const convertAllStatsValueToNumber = stats => {
   });
 };
 
-const dropYearIfNanExists = stats => {
+const dropYearIfNanOrUndefinedExists = stats => {
   return stats.filter(year => {
-    Object.values(year).forEach(value => {
+    for (let value of Object.values(year)) {
+      if (value === undefined) {
+        console.log('undefined exists');
+        return false;
+      }
       if (isNaN(value)) {
         console.log('nan exists!'); 
         return false;
       }
-    });
+    }
 
     return true;
   });
@@ -24,5 +28,5 @@ const dropYearIfNanExists = stats => {
 
 module.exports = {
   convertAllStatsValueToNumber,
-  dropYearIfNanExists,
+  dropYearIfNanOrUndefinedExists,
 };

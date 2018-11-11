@@ -14,17 +14,19 @@ const crawlOne = async (url) => {
       console.error(`skip ${url} because there is no stats.`);
       return;
     }
-    if (tooOld(url)) {
+    if (tooOld(playerData)) {
       console.error(`skip ${url} because the record is too old.`);
       return;
     }
 
     const cleansedPlayerData = cleansePlayersData(playerData, url);
+    console.log(cleansedPlayerData);
     await uploadProfileToAlgolia(cleansedPlayerData);
     await uploadStatsToFirestore(cleansedPlayerData);
     await delay(500);
   } catch (err) {
     console.error(`skip ${url} because unknown error occurs`);
+    console.error(err);
   }
 };
 

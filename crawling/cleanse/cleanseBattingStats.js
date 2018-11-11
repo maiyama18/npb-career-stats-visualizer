@@ -1,9 +1,9 @@
-const { convertAllStatsValueToNumber, dropYearIfNanExists } = require('./cleanseUtils');
+const { convertAllStatsValueToNumber, dropYearIfNanOrUndefinedExists } = require('./cleanseUtils');
 
 const cleanseBattingStats = (rawBattingStats, profile) => {
   let battingStats = convertAllStatsValueToNumber(rawBattingStats);
   battingStats = calculateAdditionalBattingStats(battingStats, profile);
-  battingStats = dropYearIfNanExists(battingStats);
+  battingStats = dropYearIfNanOrUndefinedExists(battingStats);
 
   return battingStats;
 };
