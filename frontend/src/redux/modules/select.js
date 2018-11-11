@@ -27,6 +27,12 @@ const finishSearchFailure = () => ({
   type: FINISH_SEARCH_FAILURE,
 });
 export const changeQueryThunk = (query) => async (dispatch, getState) => {
+  if (query === '') {
+    dispatch(startSearch(query));
+    dispatch(finishSearchSuccess([]));
+    return;
+  }
+
   dispatch(startSearch(query));
   try {
     const { statsType } = getState().select;
