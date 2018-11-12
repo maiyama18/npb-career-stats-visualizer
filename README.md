@@ -1,13 +1,6 @@
-# Todo
+# Links
 
-<<<<<<< HEAD
-- [x] 外国人選手（ドラフト年無し）でうまく取得できるかテスト
-- [ ] puppeteerで一文字を指定して全ての選手のスクレイピングをするコードを書く
-=======
-- [ ] 外国人選手（ドラフト年無し）でうまく取得できるかテスト
-- [ ] 一文字を指定して全ての選手のスクレイピングをするコードを書く
->>>>>>> 675e9a84060ae67c32c099c59f1161d934932d0a
-- [ ] 全ての選手をスクレイピングするコードを書く
-- [ ] firestoreに保存するコードを書く
-- [ ] cloud functionで定期実行する仕組みを作る
-- [ ] クローリングの自動テストを書く
+- [firebase console](https://console.firebase.google.com/project/npb-career-stats-visualizer/overview)
+- [algolia dashboard](https://www.algolia.com/apps/EO4ZHG0463/dashboard)
+
+# Todo
