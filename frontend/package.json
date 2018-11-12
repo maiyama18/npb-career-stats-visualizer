@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@nivo/line": "^0.51.0",
     "algoliasearch": "^3.30.0",
     "firebase": "^5.5.8",
     "react": "^16.6.1",

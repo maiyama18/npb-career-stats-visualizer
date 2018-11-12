@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux';
-import { selectReducer, selectInitialState } from './modules/select';
+import { dataReducer, dataInitialState } from './modules/data';
+import { graphReducer, graphInitialState } from './modules/graph';
 
 export const initialState = {
-  select: selectInitialState,
+  data: dataInitialState,
+  graph: graphInitialState,
 };
 
 export default combineReducers({
-  select: selectReducer,
+  data: dataReducer,
+  graph: graphReducer,
 });

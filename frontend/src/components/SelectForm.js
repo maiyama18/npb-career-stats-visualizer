@@ -2,12 +2,7 @@ import React from 'react';
 import { Form } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { changeQueryThunk, changeStatsType } from '../redux/modules/select';
-
-const statsTypeOptions = [
-  { key: 'b', text: '打撃成績', value: 'batting' },
-  { key: 'p', text: '投球成績', value: 'pitching' },
-];
+import { changeQueryThunk, changeStatsType, statsTypeOptions } from '../redux/modules/data';
 
 const SelectForm = (props) => (
   <Form>
@@ -31,8 +26,8 @@ const SelectForm = (props) => (
 
 const mapStateToProps = (state) => {
   return {
-    query: state.select.query, 
-    statsType: state.select.statsType, 
+    query: state.data.query, 
+    statsType: state.data.statsType, 
   };
 };
 

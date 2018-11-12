@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { List, Icon } from 'semantic-ui-react';
-import { removeSelectedPlayer } from '../redux/modules/select';
+import { removeSelectedPlayer } from '../redux/modules/data';
 
 const SelectedList = ({ selected, removeSelectedPlayer }) => (
   <div>
@@ -24,7 +24,7 @@ const SelectedList = ({ selected, removeSelectedPlayer }) => (
 );
 
 const mapStateToProps = (state) => ({
-  selected: state.select.selected,
+  selected: state.data.selected,
 });
 const mapDispatchToProps = (dispatch) => ({
   ...bindActionCreators({

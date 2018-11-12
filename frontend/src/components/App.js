@@ -1,7 +1,8 @@
 import React from 'react';
 import { Grid, Container, Divider } from 'semantic-ui-react';
 import Header from './Header';
-import Chart from './Chart';
+import Graph from './Graph';
+import GraphSelects from './GraphSelects';
 import Footer from './Footer';
 import SelectForm from './SelectForm';
 import SelectCandidates from './SelectCandidates';
@@ -27,7 +28,10 @@ const App = () => (
             </div>
           </Grid.Column>
           <Grid.Column width={12}>
-            <Chart />
+            <div style={{ height: '550px' }}>
+              <GraphSelects />
+              <Graph />
+            </div>
           </Grid.Column>
         </Grid.Row>
       </Grid>

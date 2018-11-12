@@ -1,7 +1,7 @@
 import { search } from '../../algoria/functions';
 import { select } from '../../firestore/functions';
 
-export const selectInitialState = {
+export const dataInitialState = {
   statsType: 'batting',
   query: '',
   searching: false,
@@ -17,7 +17,7 @@ const START_SELECT = 'START_SELECT';
 const FINISH_SELECT_SUCCESS = 'FINISH_SELECT_SUCCESS';
 const FINISH_SELECT_FAILURE = 'FINISH_SELECT_FAILURE';
 const REMOVE_SELECTED_PLAYER = 'REMOVE_SELECTED_PLAYER';
-const CHANGE_STATS_TYPE = 'CHANGE_STATS_TYPE';
+export const CHANGE_STATS_TYPE = 'CHANGE_STATS_TYPE';
 
 const startSearch = (query) => ({
   type: START_SEARCH,
@@ -63,7 +63,7 @@ export const changeStatsType = (statsType) => ({
   },
 });
 
-export const selectReducer = (state = selectInitialState, action) => {
+export const dataReducer = (state = dataInitialState, action) => {
   switch (action.type) {
   case START_SEARCH:
     return {
@@ -130,7 +130,7 @@ export const changeQueryThunk = (query) => async (dispatch, getState) => {
 
   dispatch(startSearch(query));
   try {
-    const { statsType } = getState().select;
+    const { statsType } = getState().data;
     const searchResult = await search(query, statsType);
     const candidates = searchResult.hits.map(player => ({
       id: player.id,
@@ -147,7 +147,7 @@ export const changeQueryThunk = (query) => async (dispatch, getState) => {
 export const selectPlayerThunk = (id) => async (dispatch, getState) => {
   dispatch(startSelect(id));
   try {
-    const { statsType } = getState().select;
+    const { statsType } = getState().data;
     const selectResult = await select(id, statsType);
     const playerData = selectResult.data();
     dispatch(finishSelectSuccess(playerData));
@@ -156,3 +156,8 @@ export const selectPlayerThunk = (id) => async (dispatch, getState) => {
     dispatch(finishSelectFailure());
   }
 };
+
+export const statsTypeOptions = [
+  { key: 'b', text: '打撃成績', value: 'batting' },
+  { key: 'p', text: '投球成績', value: 'pitching' },
+];
