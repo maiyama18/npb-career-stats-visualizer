@@ -13,7 +13,7 @@ const uploadStatsToFirestore = async (playerData) => {
 
     const battingRecord = {
       profile: playerData.profile,
-      battingStats: playerData.battingStats,
+      stats: playerData.battingStats,
     };
     if (await recordUpToDate(battingRecord, 'batting')) {
       console.log('Batting data is already up to date'); 
@@ -24,7 +24,7 @@ const uploadStatsToFirestore = async (playerData) => {
     if (!playerData.pitchingStats) return;
     const pitchingRecord = {
       profile: playerData.profile,
-      pitchingStats: playerData.pitchingStats,
+      stats: playerData.pitchingStats,
     };
     if (await recordUpToDate(pitchingRecord, 'pitching')) {
       console.log('Pitching data is already up to date'); 
