@@ -1,9 +1,12 @@
 import React from 'react';
+import { Container } from 'semantic-ui-react';
 
 const Header = () => {
   return (
     <div style={{background: 'blue'}}>
-      Header
+      <Container>
+        Header
+      </Container>
     </div>
   );
 };
