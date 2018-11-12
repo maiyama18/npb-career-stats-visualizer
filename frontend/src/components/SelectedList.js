@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { List, Button } from 'semantic-ui-react';
+import { List, Icon } from 'semantic-ui-react';
 import { removeSelectedPlayer } from '../redux/modules/select';
 
 const SelectedList = ({ selected, removeSelectedPlayer }) => (
@@ -10,7 +10,9 @@ const SelectedList = ({ selected, removeSelectedPlayer }) => (
       {selected.map(player => (
         <List.Item key={player.profile.id}>
           <List.Content floated='right'>
-            <a onClick={() => removeSelectedPlayer(player.profile.id)}>Remove</a>
+            <a onClick={() => removeSelectedPlayer(player.profile.id)}>
+              <Icon name='minus square' />
+            </a>
           </List.Content>
           <List.Content>
             {player.profile.name}({player.profile.team})

@@ -17,9 +17,11 @@ const App = () => (
             <div style={{ height: '90px' }}>
               <SelectForm/>
             </div>
+            <Divider />
             <div style={{ height: '260px' }}>
               <SelectCandidates />
             </div>
+            <Divider />
             <div>
               <SelectedList />
             </div>
