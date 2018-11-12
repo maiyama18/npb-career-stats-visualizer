@@ -10,25 +10,23 @@ const statsTypeOptions = [
 ];
 
 const SelectForm = (props) => (
-  <div>
-    <Form>
-      <Form.Field>
-        <Form.Select 
-          options={statsTypeOptions} 
-          value={props.statsType}
-          onChange={(_e, data) => props.changeStatsType(data.value)}
-        />
-      </Form.Field>
-      <Form.Field>
-        <input 
-          type="text" 
-          placeholder='選手名で検索'
-          value={props.query}
-          onChange={e => props.changeQueryThunk(e.target.value)}
-        />
-      </Form.Field>
-    </Form>
-  </div>
+  <Form>
+    <Form.Field>
+      <Form.Select 
+        options={statsTypeOptions} 
+        value={props.statsType}
+        onChange={(_e, data) => props.changeStatsType(data.value)}
+      />
+    </Form.Field>
+    <Form.Field>
+      <input 
+        type="text" 
+        placeholder='選手名で検索'
+        value={props.query}
+        onChange={e => props.changeQueryThunk(e.target.value)}
+      />
+    </Form.Field>
+  </Form>
 );
 
 const mapStateToProps = (state) => {

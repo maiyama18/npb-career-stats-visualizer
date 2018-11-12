@@ -6,13 +6,13 @@ import { selectPlayerThunk } from '../redux/modules/select';
 
 const SelectCandidates = ({ candidates, selectPlayerThunk }) => (
   <div>
-    <List divided verticalAlign='middle'>
+    <List divided>
       {candidates.map(candidate => (
         <List.Item key={candidate.id}>
           <List.Content floated='right'>
-            <Button onClick={() => selectPlayerThunk(candidate.id)}>Add</Button>
+            <a onClick={() => selectPlayerThunk(candidate.id)}>Add</a>
           </List.Content>
-          <List.Content style={{height: '100%'}}>
+          <List.Content>
             {candidate.name}({candidate.team})
           </List.Content>
         </List.Item>

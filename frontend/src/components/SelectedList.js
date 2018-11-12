@@ -6,11 +6,11 @@ import { removeSelectedPlayer } from '../redux/modules/select';
 
 const SelectedList = ({ selected, removeSelectedPlayer }) => (
   <div>
-    <List divided verticalAlign='middle'>
+    <List divided>
       {selected.map(player => (
         <List.Item key={player.profile.id}>
           <List.Content floated='right'>
-            <Button onClick={() => removeSelectedPlayer(player.profile.id)}>Remove</Button>
+            <a onClick={() => removeSelectedPlayer(player.profile.id)}>Remove</a>
           </List.Content>
           <List.Content>
             {player.profile.name}({player.profile.team})
