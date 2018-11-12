@@ -17,6 +17,7 @@ const START_SELECT = 'START_SELECT';
 const FINISH_SELECT_SUCCESS = 'FINISH_SELECT_SUCCESS';
 const FINISH_SELECT_FAILURE = 'FINISH_SELECT_FAILURE';
 const REMOVE_SELECTED_PLAYER = 'REMOVE_SELECTED_PLAYER';
+const CHANGE_STATS_TYPE = 'CHANGE_STATS_TYPE';
 
 const startSearch = (query) => ({
   type: START_SEARCH,
@@ -55,6 +56,12 @@ export const removeSelectedPlayer = (id) => ({
     id,
   },
 });
+export const changeStatsType = (statsType) => ({
+  type: CHANGE_STATS_TYPE,
+  payload: {
+    statsType,
+  },
+});
 
 export const selectReducer = (state = selectInitialState, action) => {
   switch (action.type) {
@@ -88,6 +95,8 @@ export const selectReducer = (state = selectInitialState, action) => {
         action.payload.playerData,
       ],
       selecting: false,
+      query: '',
+      candidates: [],
     };
   case FINISH_SELECT_FAILURE:
     return {
@@ -98,6 +107,14 @@ export const selectReducer = (state = selectInitialState, action) => {
     return {
       ...state,
       selected: state.selected.filter(player => player.profile.id !== action.payload.id),
+    };
+  case CHANGE_STATS_TYPE:
+    return {
+      ...state,
+      statsType: action.payload.statsType,
+      query: '',
+      candidates: [],
+      selected: [],
     };
   default:
     return state;
