@@ -28,8 +28,10 @@ const App = () => (
             </div>
           </Grid.Column>
           <Grid.Column width={12}>
-            <div style={{ height: '550px' }}>
+            <div style={{ height: '40px' }}>
               <GraphSelects />
+            </div>
+            <div style={{ height: '500px' }}>
               <Graph />
             </div>
           </Grid.Column>

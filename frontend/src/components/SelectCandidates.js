@@ -10,7 +10,7 @@ const SelectCandidates = ({ candidates, selectPlayerThunk }) => (
       {candidates.map(candidate => (
         <List.Item key={candidate.id}>
           <List.Content floated='right'>
-            <a onClick={() => selectPlayerThunk(candidate.id)}>
+            <a href='/' onClick={e => { e.preventDefault(); selectPlayerThunk(candidate.id); }}>
               <Icon name='plus square' />
             </a>
           </List.Content>

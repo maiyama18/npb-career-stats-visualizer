@@ -7,10 +7,10 @@ const Graph = (props) => {
     <ResponsiveLine 
       data={props.data}
       margin={{
-        top: 50,
-        bottom: 50,
-        left: 50,
-        right: 100,
+        top: 30,
+        bottom: 60,
+        left: 60,
+        right: 110,
       }}
       xScale={{
         type: 'linear',
@@ -23,12 +23,15 @@ const Graph = (props) => {
         max: 'auto',
       }}
       axisBottom={{
-        legendOffset: 30,
+        legendOffset: 35,
         legend: props.xAxis,
+        legendPosition: 'middle',
+        symbolSize: 30,
       }}
       axisLeft={{
-        legendOffset: -30,
+        legendOffset: -40,
         legend: props.yAxis,
+        legendPosition: 'middle',
       }}
       dotColor='inherit:darker(0.3)'
       dotLabel='y'
@@ -38,9 +41,12 @@ const Graph = (props) => {
         {
           anchor: 'bottom-right',
           direction: 'column',
+          translateX: 100,
           justify: false,
           itemWidth: 80,
           itemHeight: 20,
+          symbolSize: 12,
+          symbolShape: 'circle',
         },
       ]}
     />

@@ -10,7 +10,7 @@ const SelectedList = ({ selected, removeSelectedPlayer }) => (
       {selected.map(player => (
         <List.Item key={player.profile.id}>
           <List.Content floated='right'>
-            <a onClick={() => removeSelectedPlayer(player.profile.id)}>
+            <a href='/' onClick={e => { e.preventDefault(); removeSelectedPlayer(player.profile.id); }}>
               <Icon name='minus square' />
             </a>
           </List.Content>
