@@ -40,7 +40,9 @@ const App = () => (
         </Grid.Row>
       </Grid>
     </Container>
-    <Footer />
+    <div style={{ marginTop: '14px' }}>
+      <Footer />
+    </div>
   </div>
 );
 
