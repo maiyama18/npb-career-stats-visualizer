@@ -1,21 +1,27 @@
 import React from 'react';
-import { Icon, Container } from 'semantic-ui-react';
+import { Menu, Icon, Container } from 'semantic-ui-react';
 
 const Footer = () => {
   return (
-    <div>
+    <Menu size='mini' borderless attached inverted color='grey'>
       <Container textAlign='right'>
-        <Icon fitted name='copyright outline' /> 2018 ymr-39 
-        <span style={{ marginLeft: '10px' }}>
-          <a href="https://google.com">
-            <Icon name='github' />
-          </a> 
-          <a href="/">
-            <Icon name='twitter' />
-          </a> 
-        </span>
+        <Menu.Menu position='right'>
+          <Menu.Item>
+            <Icon fitted name='copyright outline' /> 2018 ymr-39 
+          </Menu.Item>
+          <a href="https://github.com">
+            <Menu.Item>
+              <Icon name='github' />
+            </Menu.Item>
+          </a>
+          <a href="https://twitter.com">
+            <Menu.Item>
+              <Icon name='twitter' />
+            </Menu.Item>
+          </a>
+        </Menu.Menu>
       </Container>
-    </div>
+    </Menu>
   );
 };
 
