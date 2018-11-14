@@ -33,7 +33,7 @@ const App = () => (
             <div style={{ height: '65px' }}>
               <GraphSelects />
             </div>
-            <div style={{ height: '605px' }}>
+            <div style={{ height: '545px' }}>
               <Graph />
             </div>
           </Grid.Column>

@@ -7,9 +7,9 @@ const Graph = (props) => {
     <ResponsiveLine 
       data={props.data}
       margin={{
-        top: 30,
-        bottom: 60,
-        left: 60,
+        top: 20,
+        bottom: 70,
+        left: 70,
         right: 110,
       }}
       xScale={{
@@ -23,13 +23,12 @@ const Graph = (props) => {
         max: 'auto',
       }}
       axisBottom={{
-        legendOffset: 35,
+        legendOffset: 45,
         legend: props.xAxis,
         legendPosition: 'middle',
-        symbolSize: 30,
       }}
       axisLeft={{
-        legendOffset: -40,
+        legendOffset: -50,
         legend: props.yAxis,
         legendPosition: 'middle',
       }}
@@ -49,6 +48,16 @@ const Graph = (props) => {
           symbolShape: 'circle',
         },
       ]}
+      theme={{
+        background: '#f4f4f4',
+        axis: {
+          legend: {
+            text: {
+              fontSize: 20,
+            },
+          },
+        },
+      }}
     />
   );
 };
