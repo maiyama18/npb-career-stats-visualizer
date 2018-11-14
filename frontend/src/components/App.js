@@ -30,10 +30,10 @@ const App = () => (
             </div>
           </Grid.Column>
           <Grid.Column width={12}>
-            <div style={{ height: '40px' }}>
+            <div style={{ height: '65px' }}>
               <GraphSelects />
             </div>
-            <div style={{ height: '630px' }}>
+            <div style={{ height: '605px' }}>
               <Graph />
             </div>
           </Grid.Column>

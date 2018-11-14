@@ -11,21 +11,33 @@ const Graph = (props) => {
   return (
     <Form>
       <Form.Group>
-        <Form.Select 
-          options={xAxisOptions} 
-          value={props.xAxis}
-          onChange={(_e, data) => props.changeXAxis(data.value)}
-        />
-        <Form.Select 
-          options={yTypeOptions} 
-          value={props.yType}
-          onChange={(_e, data) => props.changeYType(data.value)}
-        />
-        <Form.Select 
-          options={props.statsType === 'batting' ? battingYAxisOptions : pitchingYAxisOptions} 
-          value={props.yAxis}
-          onChange={(_e, data) => props.changeYAxis(data.value)}
-        />
+        <Form.Field style={{ marginRight: '3rem' }}>
+          <label>横軸</label>
+          <Form.Select 
+            options={xAxisOptions} 
+            value={props.xAxis}
+            onChange={(_e, data) => props.changeXAxis(data.value)}
+            style={{ minWidth: '7em' }}
+          />
+        </Form.Field>
+        <Form.Field>
+          <label>縦軸</label>
+          <Form.Select 
+            options={yTypeOptions} 
+            value={props.yType}
+            onChange={(_e, data) => props.changeYType(data.value)}
+            style={{ minWidth: '7em' }}
+          />
+        </Form.Field>
+        <Form.Field>
+          <label style={{ color: 'white' }}>_</label>
+          <Form.Select 
+            options={props.statsType === 'batting' ? battingYAxisOptions : pitchingYAxisOptions} 
+            value={props.yAxis}
+            onChange={(_e, data) => props.changeYAxis(data.value)}
+            style={{ minWidth: '10em' }}
+          />
+        </Form.Field>
       </Form.Group>
     </Form>
   );
