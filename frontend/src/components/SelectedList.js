@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { List, Icon } from 'semantic-ui-react';
+import { List, Icon, Loader } from 'semantic-ui-react';
 import { removeSelectedPlayer } from '../redux/modules/data';
 
-const SelectedList = ({ selected, removeSelectedPlayer }) => (
+const SelectedList = (props) => (
   <div>
     <List divided>
-      {selected.map(player => (
+      {props.selected.map(player => (
         <List.Item key={player.profile.id}>
           <List.Content floated='right'>
-            <a href='/' onClick={e => { e.preventDefault(); removeSelectedPlayer(player.profile.id); }}>
+            <a href='/' onClick={e => { e.preventDefault(); props.removeSelectedPlayer(player.profile.id); }}>
               <Icon name='minus square' />
             </a>
           </List.Content>
@@ -19,11 +19,13 @@ const SelectedList = ({ selected, removeSelectedPlayer }) => (
           </List.Content>
         </List.Item>
       ))}
+      <Loader active={props.selecting} inline='centered' />
     </List>
   </div>
 );
 
 const mapStateToProps = (state) => ({
+  selecting: state.data.selecting,
   selected: state.data.selected,
 });
 const mapDispatchToProps = (dispatch) => ({
