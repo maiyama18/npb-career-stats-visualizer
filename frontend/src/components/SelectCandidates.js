@@ -1,11 +1,14 @@
 import React from 'react';
-import { List, Icon } from 'semantic-ui-react';
+import { List, Icon, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { selectPlayerThunk } from '../redux/modules/data';
 
 const SelectCandidates = ({ candidates, selectPlayerThunk }) => (
   <div>
+    <Header as='h6'>
+      検索結果
+    </Header>
     <List divided relaxed>
       {candidates.map(candidate => (
         <List.Item key={candidate.id}>

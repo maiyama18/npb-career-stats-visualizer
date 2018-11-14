@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { List, Icon, Loader } from 'semantic-ui-react';
+import { List, Icon, Loader, Header } from 'semantic-ui-react';
 import { removeSelectedPlayer } from '../redux/modules/data';
 
 const SelectedList = (props) => (
   <div>
+    <Header as='h6'>
+      表示中
+    </Header>
     <List divided>
       {props.selected.map(player => (
         <List.Item key={player.profile.id}>
