@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { List, Icon, Loader, Header } from 'semantic-ui-react';
 import { removeSelectedPlayer } from '../redux/modules/data';
+import { teamKanjis } from '../utils';
 
 const SelectedList = (props) => (
   <div>
@@ -18,7 +19,8 @@ const SelectedList = (props) => (
             </a>
           </List.Content>
           <List.Content>
-            {player.profile.name}({player.profile.team})
+            {player.profile.name}
+            {player.team === 'UNDEFINED' ? null : ` (${teamKanjis[player.profile.team]})`}
           </List.Content>
         </List.Item>
       ))}

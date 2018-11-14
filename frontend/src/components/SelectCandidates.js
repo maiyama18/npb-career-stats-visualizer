@@ -3,6 +3,7 @@ import { List, Icon, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { selectPlayerThunk } from '../redux/modules/data';
+import { teamKanjis } from '../utils';
 
 const SelectCandidates = ({ candidates, selectPlayerThunk }) => (
   <div>
@@ -18,7 +19,8 @@ const SelectCandidates = ({ candidates, selectPlayerThunk }) => (
             </a>
           </List.Content>
           <List.Content>
-            {candidate.name}({candidate.team})
+            {candidate.name}
+            {candidate.team === 'UNDEFINED' ? null : ` (${teamKanjis[candidate.team]})`}
           </List.Content>
         </List.Item>
       ))}
