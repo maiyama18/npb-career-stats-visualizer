@@ -21,11 +21,11 @@ const App = () => (
               <SelectForm/>
             </div>
             <Divider />
-            <div style={{ height: '260px' }}>
+            <div style={{ height: '260px', overflowY: 'scroll' }}>
               <SelectCandidates />
             </div>
             <Divider />
-            <div>
+            <div style={{ height: '200px', overflowY: 'scroll' }}>
               <SelectedList />
             </div>
           </Grid.Column>
@@ -33,7 +33,7 @@ const App = () => (
             <div style={{ height: '40px' }}>
               <GraphSelects />
             </div>
-            <div style={{ height: '500px' }}>
+            <div style={{ height: '630px' }}>
               <Graph />
             </div>
           </Grid.Column>

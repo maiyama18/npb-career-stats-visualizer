@@ -20,7 +20,7 @@ const SelectedList = (props) => (
           </List.Content>
           <List.Content>
             {player.profile.name}
-            {player.team === 'UNDEFINED' ? null : ` (${teamKanjis[player.profile.team]})`}
+            {player.profile.team === 'UNDEFINED' ? null : ` (${teamKanjis[player.profile.team]})`}
           </List.Content>
         </List.Item>
       ))}
