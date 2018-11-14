@@ -1,13 +1,13 @@
 import React from 'react';
-import { Container } from 'semantic-ui-react';
+import { Menu, Container } from 'semantic-ui-react';
 
 const Header = () => {
   return (
-    <div style={{background: 'blue'}}>
+    <Menu attached inverted borderless color='teal'>
       <Container>
-        Header
+        <Menu.Item name='NPB stats visualizer' fitted='horizontally' />
       </Container>
-    </div>
+    </Menu>
   );
 };
 

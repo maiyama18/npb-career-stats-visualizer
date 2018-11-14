@@ -10,7 +10,9 @@ import SelectedList from './SelectedList';
 
 const App = () => (
   <div>
-    <Header />    
+    <div style={{ marginBottom: '14px' }}>
+      <Header />    
+    </div>
     <Container>
       <Grid divided>
         <Grid.Row>
