@@ -90,10 +90,12 @@ export const dataReducer = (state = dataInitialState, action) => {
   case FINISH_SELECT_SUCCESS:
     return {
       ...state,
-      selected: [
-        ...state.selected,
-        action.payload.playerData,
-      ],
+      selected: state.selected.find(p => p.profile.id === action.payload.playerData.profile.id)
+        ? state.selected
+        : [
+          ...state.selected,
+          action.payload.playerData,
+        ],
       selecting: false,
       query: '',
       candidates: [],
