@@ -33,7 +33,7 @@ const Graph = (props) => {
         <Form.Field>
           <label style={{ color: 'white' }}>_</label>
           <Form.Select 
-            options={props.yAxisOptions} 
+            options={props.yAxisOptions.map(o => ({ key: o.key, value: o.value, text: o.text }))} 
             value={props.yAxis.value}
             onChange={(_e, data) => props.changeYAxis(retrieveOptionFromValue(data.value, props.statsType))}
             style={{ minWidth: '10em' }}
