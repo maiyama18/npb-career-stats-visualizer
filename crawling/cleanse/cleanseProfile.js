@@ -9,7 +9,7 @@ const cleanseProfile = (rawProfile, rawBattingStats, rawPitchingStats, url) => {
   const height = parseInt(extract(rawProfile.heightAndWeight, /(\d+)cm/));
   const weight = parseInt(extract(rawProfile.heightAndWeight, /(\d+)kg/));
   const birthDay = parseDate(rawProfile.birthDay);
-  const firstYear = rawProfile.draftInfo ? parseInt(extract(rawProfile.draftInfo, /(\d+)年/)) : rawBattingStats[0].year;
+  const firstYear = rawProfile.draftInfo ? parseInt(extract(rawProfile.draftInfo, /(\d+)年/)) + 1 : rawBattingStats[0].year;
 
   return {
     id,

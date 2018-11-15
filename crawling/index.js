@@ -15,6 +15,6 @@ if (type === 'one') {
 } else {
   const topUrl = `http://npb.jp/bis/players/${type}/index.html`;
   crawl(topUrl)
-    .then(() => console.log('crawl finished'));
+    .then(() => console.log('crawlAll finished'));
 }
 
