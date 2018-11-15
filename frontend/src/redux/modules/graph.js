@@ -64,7 +64,7 @@ export const xAxisOptions = [
   { key: 'yearth', text: '何年目', value: 'yearth' },
 ];
 export const battingYAxisOptions = [
-  { key: 'battingAverage', text: '打率', value: 'battingAverage', eachYearOnly: true },
+  { key: 'battingAverage', text: '打率', value: 'battingAverage', eachyearonly: true },
   { key: 'sluggingPercentage', text: '長打率', value: 'sluggingPercentage', eachYearOnly: true },
   { key: 'onBasePercentage', text: '出塁率', value: 'onBasePercentage', eachYearOnly: true },
   { key: 'onBasePlusSluggingPercentage', text: 'OPS', value: 'onBasePlusSluggingPercentage', eachYearOnly: true },
