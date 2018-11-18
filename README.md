@@ -2,6 +2,7 @@
 
 - [firebase console](https://console.firebase.google.com/project/npb-career-stats-visualizer/overview)
 - [algolia dashboard](https://www.algolia.com/apps/EO4ZHG0463/dashboard)
+- [google analytics](https://analytics.google.com/analytics/web/provision/?authuser=0#/report-home/a129391439w188634227p185163401)
 
 # Todo
 
